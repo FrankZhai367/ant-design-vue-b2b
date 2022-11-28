@@ -1,3 +1,10 @@
+<!--
+ * @Author: zhaipengchao zhaipengchao@myhexin.com
+ * @Date: 2022-11-28 11:23:38
+ * @LastEditors: zhaipengchao zhaipengchao@myhexin.com
+ * @LastEditTime: 2022-11-28 16:07:11
+ * @Description: readme
+-->
 <p align="center">
   <a href="https://www.antdv.com/">
     <img width="200" src="https://qn.antdv.com/logo.png">
@@ -85,3 +92,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 ## [More Sponsor (From Patreon、alipay、wechat、paypal...)](https://github.com/vueComponent/ant-design-vue/blob/master/BACKERS.md)
 
 [![Let's fund issues in this repository](https://issuehunt.io/static/embed/issuehunt-button-v1.svg)](https://issuehunt.io/repos/104172832)
+
+## 自定义部分
+
+- [package.json]() 中添加 `npm run custom-theme` 指令，会使用[theme-b2b.less]() 覆盖[antd.less]()里的主题色，运行前需要先运行 `npm run compile` 生成 dist 和 lib 目录
