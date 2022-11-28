@@ -9,7 +9,7 @@
   <p>
     <a
       class="tooltip"
-      href="https://github.com/Justineo/vue-clamp"
+      href="https://github.com/FrankZhai367/vue3-clamp"
       :data-tooltip="zh ? '前往 GitHub 仓库' : 'Visit GitHub repo'"
     >GitHub →</a>
   </p>
@@ -324,7 +324,7 @@
     {{ zh ? '使用方法' : 'Usage' }}
   </h2>
   <div class="divider text-center" :data-content="zh ? '↓ 安装' : '↓ Installation'"/>
-  <pre class="code shell" data-lang="Shell"><code>$ npm i --save vue-clamp</code></pre>
+  <pre class="code shell" data-lang="Shell"><code>$ npm i --save vue3-clamp</code></pre>
   <div class="divider text-center" :data-content="zh ? '↓ 代码样例' : '↓ Code example'"/>
   <pre v-pre class="code vue" data-lang="Vue"><code>&lt;template&gt;
 &lt;v-clamp autoresize :max-lines="3"&gt;&#x7B;&#x7B; text &#x7D;&#x7D;&lt;/v-clamp&gt;

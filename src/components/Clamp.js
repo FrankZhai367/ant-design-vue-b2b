@@ -1,7 +1,8 @@
 import { addListener, removeListener } from 'resize-detector'
+import { h } from 'vue'
 
 export default {
-  name: 'vue-clamp',
+  name: 'vue3-clamp',
   props: {
     tag: {
       type: String,
@@ -98,7 +99,7 @@ export default {
     this.text = this.getText()
     this.applyChange()
   },
-  beforeDestroy () {
+  beforeUnmount () {
     this.cleanUp()
   },
   methods: {
@@ -172,10 +173,10 @@ export default {
     },
     getText () {
       // Look for the first non-empty text node
-      const [content] = (this.$slots.default || []).filter(
+      const [content] = (this.$slots.default() || []).filter(
         (node) => !node.tag && !node.isComment
       )
-      return content ? content.text.trim() : ''
+      return content ? content.children.trim() : ''
     },
     moveEdge (steps) {
       this.clampAt(this.offset + steps)
@@ -224,11 +225,13 @@ export default {
       }
     }
   },
-  render (h) {
+  render () {
+    const isServer = false
+    // const isServer = this.$isServer;
     const contents = [
       h(
         'span',
-        this.$isServer
+        isServer
           ? {}
           : {
             ref: 'text',
@@ -236,7 +239,7 @@ export default {
               'aria-label': this.text.trim()
             }
           },
-        this.$isServer ? this.text : this.realText
+        isServer ? this.text : this.realText
       )
     ]
 
@@ -248,15 +251,13 @@ export default {
       clamped: this.isClamped,
       expanded: this.localExpanded
     }
-    const before = this.$scopedSlots.before
-      ? this.$scopedSlots.before(scope)
-      : this.$slots.before
+    let before = this.$slots.before
+    before = typeof before === 'function' ? before(scope) : before
     if (before) {
       contents.unshift(...(Array.isArray(before) ? before : [before]))
     }
-    const after = this.$scopedSlots.after
-      ? this.$scopedSlots.after(scope)
-      : this.$slots.after
+    let after = this.$slots.after
+    after = typeof after === 'function' ? after(scope) : after
     if (after) {
       contents.push(...(Array.isArray(after) ? after : [after]))
     }
